@@ -1,0 +1,27 @@
+name: validate-skills
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate skill folders
+        run: python tools/validate_skills.py skills
+
+      - name: Run smoke tests
+        run: python tools/run_smoke_tests.py
+

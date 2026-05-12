@@ -1,0 +1,4 @@
+interface:
+  display_name: "Webpage to XMind"
+  short_description: "Summarize webpages into XMind-compatible mind maps."
+  default_prompt: "Summarize this webpage as an XMind mind map I can open locally."

@@ -1,0 +1,21 @@
+{
+  "title": "Sample Article Review",
+  "source": "https://example.com/sample-article",
+  "children": [
+    {
+      "title": "Core idea: the article explains why reusable workflows need validation.",
+      "children": [
+        {
+          "title": "Validation should include both static checks and a realistic output test."
+        },
+        {
+          "title": "Cross-platform behavior matters when skills are shared publicly."
+        }
+      ]
+    },
+    {
+      "title": "Review prompt: identify which steps can be automated before publishing."
+    }
+  ]
+}
+

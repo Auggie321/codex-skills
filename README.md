@@ -1,29 +1,34 @@
 # Codex Skills
 
-Personal Codex skills intended for local use, sharing, and cross-platform reuse.
+Personal Codex skills for local use, sharing, and reuse.
 
-## Skills
+## Available Skills
 
-- `webpage-to-xmind`: Convert webpages, articles, and documentation into local XMind-compatible review mind maps.
+| Skill | Description |
+| --- | --- |
+| `webpage-to-xmind` | Convert webpages, articles, and documentation into local XMind-compatible review mind maps. |
 
-## Validate Locally
+## Install
 
-Run the repository checks before publishing:
+### Option 1: Codex Interactive
 
-```powershell
-python .\tools\validate_skills.py .\skills
-python .\tools\run_smoke_tests.py
+Recommended. In a Codex session, ask Codex to install the skill from this repository:
+
+```text
+Use $skill-installer to install <skill-name> from https://github.com/Auggie321/codex-skills/tree/main/skills/<skill-name>
 ```
 
-You can also validate a single skill with Codex's local skill validator:
+Example:
 
-```powershell
-python "$env:USERPROFILE\.codex\skills\.system\skill-creator\scripts\quick_validate.py" .\skills\webpage-to-xmind
+```text
+Use $skill-installer to install webpage-to-xmind from https://github.com/Auggie321/codex-skills/tree/main/skills/webpage-to-xmind
 ```
 
-On macOS or Linux, use `python3` if `python` is not available.
+Restart Codex after installation so the new skill is loaded.
 
-## Install A Skill Locally
+### Option 2: Install A Skill Locally
+
+Clone this repository, then copy the skill folder into your local Codex skills directory.
 
 Windows:
 
@@ -37,9 +42,25 @@ macOS/Linux:
 cp -R ./skills/webpage-to-xmind ~/.codex/skills/webpage-to-xmind
 ```
 
-After installing, start a new Codex session and try:
+For another skill, replace `webpage-to-xmind` with that skill folder name.
+
+Restart Codex after installation.
+
+## Use Webpage To XMind
+
+Ask Codex to use the skill with any webpage, article, or documentation URL:
 
 ```text
 Use $webpage-to-xmind to create an XMind review map from this article: <url>
 ```
 
+Codex will summarize the page into a review-friendly outline and generate a local `.xmind` file that can be opened with Xmind/XMind.
+
+## Validate Locally
+
+Run checks before publishing skill changes:
+
+```powershell
+python .\tools\validate_skills.py .\skills
+python .\tools\run_smoke_tests.py
+```

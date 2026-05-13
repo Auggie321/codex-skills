@@ -1,0 +1,7 @@
+interface:
+  display_name: "API Usage Monitor"
+  short_description: "Summarize local API usage and billing reports safely."
+  default_prompt: "Use $api-usage-monitor to run my local API usage report and summarize anything that needs attention."
+
+policy:
+  allow_implicit_invocation: true

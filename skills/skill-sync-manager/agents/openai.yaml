@@ -1,0 +1,7 @@
+interface:
+  display_name: "Skill Sync Manager"
+  short_description: "Safely sync local Codex skills into a shared repository."
+  default_prompt: "Use $skill-sync-manager to sync selected local Codex skills into my shared skills repository without committing."
+
+policy:
+  allow_implicit_invocation: true

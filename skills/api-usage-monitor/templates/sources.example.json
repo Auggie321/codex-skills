@@ -1,0 +1,70 @@
+{
+  "report": {
+    "title": "API Usage Report",
+    "timezone": "Asia/Shanghai"
+  },
+  "sources": [
+    {
+      "name": "Codex Desktop quota snapshot",
+      "provider": "codex_current_usage",
+      "enabled": true,
+      "codex_home_env": "CODEX_HOME",
+      "sessions_glob": "sessions/*/*/*/rollout-*.jsonl",
+      "limit_id": "codex",
+      "include_token_details": false,
+      "notes": "Best-effort local rate-limit snapshot from Codex Desktop session logs. No API key is required; values may lag the UI."
+    },
+    {
+      "name": "DeepSeek balance",
+      "provider": "deepseek_balance",
+      "enabled": true,
+      "api_key_env": "DEEPSEEK_API_KEY",
+      "notes": "DEEPSEEK_API_KEY is a DeepSeek platform API key. This prepaid source reports current balance, not usage."
+    },
+    {
+      "name": "GitHub Copilot premium requests (user)",
+      "provider": "github_copilot_premium_usage",
+      "enabled": true,
+      "token_env": "GITHUB_TOKEN",
+      "account_type": "user",
+      "account_env": "GITHUB_USERNAME",
+      "allowance_env": "GITHUB_COPILOT_PREMIUM_REQUEST_ALLOWANCE",
+      "included_allowance": 300,
+      "quantity_keys": ["grossQuantity", "gross_quantity", "quantity", "netQuantity", "net_quantity"],
+      "period": "month",
+      "notes": "Tracks the premium request usage shown under GitHub Settings > Copilot. The default included allowance is 300 for Copilot Pro; override with GITHUB_COPILOT_PREMIUM_REQUEST_ALLOWANCE."
+    },
+    {
+      "name": "GitHub Copilot premium requests (org)",
+      "provider": "github_copilot_premium_usage",
+      "enabled": true,
+      "token_env": "GITHUB_TOKEN",
+      "account_type": "org",
+      "account_env": "GITHUB_ORG",
+      "optional_if_missing_account": true,
+      "hide_when_skipped": true,
+      "allowance_env": "GITHUB_COPILOT_PREMIUM_REQUEST_ALLOWANCE",
+      "included_allowance": 300,
+      "quantity_keys": ["grossQuantity", "gross_quantity", "quantity", "netQuantity", "net_quantity"],
+      "period": "month",
+      "notes": "Optional. GITHUB_ORG is only needed if you want organization Copilot premium request usage; personal developers can leave it empty."
+    },
+    {
+      "name": "Gemini BigQuery billing budget",
+      "provider": "google_bigquery_billing_budget",
+      "enabled": true,
+      "total_budget_env": "TOTAL_BUDGET",
+      "bq_project_env": "GEMINI_BQ_PROJECT",
+      "dataset_env": "GEMINI_BQ_DATASET",
+      "table_env": "GEMINI_BILLING_TABLE",
+      "usage_project_env": "GOOGLE_CLOUD_PROJECT",
+      "service_filter_env": "GEMINI_BQ_SERVICE_FILTER",
+      "service_filter": "",
+      "bearer_token_env": "GOOGLE_OAUTH_ACCESS_TOKEN",
+      "google_service_account_json_env": "GOOGLE_APPLICATION_CREDENTIALS",
+      "prefer_service_account": true,
+      "google_oauth_scope": "https://www.googleapis.com/auth/cloud-platform",
+      "notes": "Uses BigQuery Cloud Billing export to calculate spent and remaining balance from TOTAL_BUDGET. Service account needs BigQuery Job User and BigQuery Data Viewer access."
+    }
+  ]
+}

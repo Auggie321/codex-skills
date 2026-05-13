@@ -22,6 +22,8 @@ jobs:
       - name: Validate skill folders
         run: python tools/validate_skills.py skills
 
+      - name: Check private files are not shared
+        run: python tools/check_private_skill_files.py
+
       - name: Run smoke tests
         run: python tools/run_smoke_tests.py
-

@@ -6,6 +6,8 @@ Personal Codex skills for local use, sharing, and reuse.
 
 | Skill | Description |
 | --- | --- |
+| `api-usage-monitor` | Generate local API usage, balance, and quota reports without sharing secrets. |
+| `skill-sync-manager` | Safely sync local Codex skills into this shared repository. |
 | `webpage-to-xmind` | Convert webpages, articles, and documentation into local XMind-compatible review mind maps. |
 
 ## Install
@@ -46,6 +48,25 @@ For another skill, replace `webpage-to-xmind` with that skill folder name.
 
 Restart Codex after installation.
 
+## Use API Usage Monitor
+
+Ask Codex to use the skill when you want a private local usage report:
+
+```text
+Use $api-usage-monitor to run my local API usage report and summarize anything that needs attention.
+```
+
+After installing the skill, copy its templates into the skill's private local folder and fill in your own values:
+
+```powershell
+$skill = "$env:USERPROFILE\.codex\skills\api-usage-monitor"
+New-Item -ItemType Directory -Force "$skill\local" | Out-Null
+Copy-Item "$skill\templates\.env.example" "$skill\local\.env"
+Copy-Item "$skill\templates\sources.example.json" "$skill\local\sources.local.json"
+```
+
+Keep real credentials only in `local/.env` or your shell environment. The shared repository intentionally excludes `local/.env`, `local/sources.local.json`, and generated reports.
+
 ## Use Webpage To XMind
 
 Ask Codex to use the skill with any webpage, article, or documentation URL:
@@ -62,5 +83,6 @@ Run checks before publishing skill changes:
 
 ```powershell
 python .\tools\validate_skills.py .\skills
+python .\tools\check_private_skill_files.py
 python .\tools\run_smoke_tests.py
 ```

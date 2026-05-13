@@ -8,3 +8,11 @@ Thumbs.db
 tests/_tmp/
 *.tmp
 
+# Private skill runtime files and secrets.
+**/.env
+**/.env.*
+!**/.env.example
+**/sources.local.json
+**/*.local.json
+skills/*/local/
+skills/*/reports/
